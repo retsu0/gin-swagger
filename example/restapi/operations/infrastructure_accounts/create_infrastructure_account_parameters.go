@@ -10,11 +10,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
-	"github.com/mikkeloscar/gin-swagger/api"
+	"github.com/retsu0/gin-swagger/api"
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/mikkeloscar/gin-swagger/example/models"
+	"github.com/retsu0/gin-swagger/example/models"
 )
 
 // BusinessLogicCreateInfrastructureAccount executes the core logic of the related

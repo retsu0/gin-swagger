@@ -14,8 +14,8 @@ import (
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
 	ginoauth2 "github.com/zalando/gin-oauth2"
-	"github.com/mikkeloscar/gin-swagger/middleware"
-	"github.com/mikkeloscar/gin-swagger/api"
+	"github.com/retsu0/gin-swagger/middleware"
+	"github.com/retsu0/gin-swagger/api"
 	log "github.com/sirupsen/logrus"
 	{{range .DefaultImports}}{{printf "%q" .}}
 	{{end}}
@@ -89,10 +89,17 @@ func ginizePath(path string) string {
 }
 
 // configureRoutes configures the routes for the API service.
-func configureRoutes(service Service, enableAuth bool, tokenURL string) *Routes {
+func configureRoutes(service Service, enableAuth bool, tokenURL string, middlewares []gin.HandlerFunc) *Routes {
 	engine := gin.New()
 	engine.Use(gin.Recovery())
 	engine.Use(middleware.LogrusLogger())
+
+	if middlewares != nil {
+        for _, v := range middlewares {
+            engine.Use(v)
+        }
+    }
+
 	routes := &Routes{Engine: engine}
 
 	{{range .Operations}}routes.{{ pascalize .Name }}.RouterGroup = routes.Group("")
@@ -133,13 +140,13 @@ type API struct {
 }
 
 // NewAPI initializes a new API service.
-func NewAPI(svc Service, config *Config) *API {
+func NewAPI(svc Service, config *Config, middlewares []gin.HandlerFunc) *API {
 	if !config.Debug {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
 	api := &API{
-		Routes: configureRoutes(svc, !config.AuthDisabled, config.TokenURL),
+		Routes: configureRoutes(svc, !config.AuthDisabled, config.TokenURL, middlewares),
 		config: config,
 		Title: "{{ .Info.Title }}",
 		Version: "{{ .Info.Version }}",

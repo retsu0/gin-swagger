@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/mikkeloscar/gin-swagger/example/restapi"
+	"github.com/retsu0/gin-swagger/example/restapi"
 )
 
 var apiConfig restapi.Config

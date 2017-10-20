@@ -3,13 +3,13 @@ package main
 import (
 	"net/http"
 
-	"github.com/mikkeloscar/gin-swagger/example/restapi/operations/clusters"
-	"github.com/mikkeloscar/gin-swagger/example/restapi/operations/config_items"
-	"github.com/mikkeloscar/gin-swagger/example/restapi/operations/infrastructure_accounts"
-	"github.com/mikkeloscar/gin-swagger/example/restapi/operations/node_pools"
+	"github.com/retsu0/gin-swagger/example/restapi/operations/clusters"
+	"github.com/retsu0/gin-swagger/example/restapi/operations/config_items"
+	"github.com/retsu0/gin-swagger/example/restapi/operations/infrastructure_accounts"
+	"github.com/retsu0/gin-swagger/example/restapi/operations/node_pools"
 
 	"github.com/gin-gonic/gin"
-	"github.com/mikkeloscar/gin-swagger/api"
+	"github.com/retsu0/gin-swagger/api"
 )
 
 type ExampleService struct {

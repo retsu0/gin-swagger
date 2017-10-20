@@ -8,7 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-openapi/errors"
-	"github.com/mikkeloscar/gin-swagger/api"
+	"github.com/retsu0/gin-swagger/api"
 )
 
 // BusinessLogicGetHealth executes the core logic of the related

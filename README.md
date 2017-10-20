@@ -19,7 +19,7 @@ Once you have the dependencies in place you can simply run `go get` to install
 gin-swagger.
 
 ```
-$ go get github.com/mikkeloscar/gin-swagger
+$ go get github.com/retsu0/gin-swagger
 $ gin-swagger --help
 usage: gin-swagger --application=APPLICATION [<flags>]
 

@@ -11,11 +11,11 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/validate"
-	"github.com/mikkeloscar/gin-swagger/api"
+	"github.com/retsu0/gin-swagger/api"
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/mikkeloscar/gin-swagger/example/models"
+	"github.com/retsu0/gin-swagger/example/models"
 )
 
 // BusinessLogicCreateOrUpdateNodePool executes the core logic of the related
