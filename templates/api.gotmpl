@@ -89,7 +89,7 @@ func ginizePath(path string) string {
 }
 
 // configureRoutes configures the routes for the Server service.
-func configureRoutes(service Service, enableAuth bool, tokenURL string) *Routes {
+func configureRoutes(service Service, enableAuth bool, tokenURL string, middlewares []gin.HandlerFunc) *Routes {
 	engine := gin.New()
 	engine.Use(gin.Recovery())
 	engine.Use(middleware.LogrusLogger())
