@@ -181,6 +181,7 @@ func NewServer(svc Service, config *Config, middlewares []gin.HandlerFunc) *Serv
 // the config passed to NewServer.
 func (a *Server) Run() error {
 	log.SetFormatter(&log.JSONFormatter{})
+	
 	log.Infof("Serving '%s - %s' on address %s", a.Title, a.Version, a.server.Addr)
 	
 	if strings.HasPrefix(a.server.Addr, "unix:") {
