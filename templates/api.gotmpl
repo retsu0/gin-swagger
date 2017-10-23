@@ -180,7 +180,12 @@ func NewAPI(svc Service, config *Config, middlewares []gin.HandlerFunc) *API {
 // Run runs the API server it will listen on either HTTP or HTTPS depending on
 // the config passed to NewAPI.
 func (a *API) Run() error {
+	log.SetFormatter(&log.JSONFormatter{})
 	log.Infof("Serving '%s - %s' on address %s", a.Title, a.Version, a.server.Addr)
+	
+	if strings.HasPrefix(a.server.Addr, "unix:") {
+		return a.RunUnix()
+	}
 	if a.config.InsecureHTTP {
 		return a.server.ListenAndServe()
 	}
@@ -218,6 +223,30 @@ func (a *API) RunWithSigHandler(shutdown ...func() error) error {
 		if err != nil {
 			return err
 		}
+	}
+
+	return nil
+}
+
+// RunUnix runs over an unix socket
+func (a *API) RunUnix() error {
+	addr := a.server.Addr
+	file := addr[len("unix:"):]
+	os.Remove(file)
+
+	listener, err := net.Listen("unix", file)
+	if err != nil {
+		return err
+	}
+
+	err = a.server.Serve(listener)
+	if err != nil {
+		return err
+	}
+
+	err = listener.Close()
+	if err != nil {
+		return err
 	}
 
 	return nil
