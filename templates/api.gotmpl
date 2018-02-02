@@ -230,7 +230,7 @@ func (a *Server) RunWithSigHandler(shutdown ...func() error) error {
 }
 
 // RunUnix runs over an unix socket
-func (a *API) RunUnix() error {
+func (a *Server) RunUnix() error {
 	addr := a.server.Addr
 	file := addr[len("unix:"):]
 	os.Remove(file)
